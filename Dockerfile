@@ -5,6 +5,9 @@ RUN pip install -U flask-cors
 
 COPY ./app /app
 
+# docker run -d --rm -p 80:80 shotahorii/flask-rest-api-env
+# http://127.0.0.1
+
 
 # FROM python:3.8
 
