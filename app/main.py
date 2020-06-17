@@ -1,22 +1,26 @@
 from flask import Flask
 from flask_restful import Resource, Api
-from flask_cors import CORS
+from flask_restful.utils import cors
 
 app = Flask(__name__)
-CORS(app)
 api = Api(app)
 
 
 todos = {"todo1": "Remember the milk"}
 
 class HelloWorld(Resource):
+
+    @cors.crossdomain(origin='*')
     def get(self):
-        return {'hello': 'world'}
+        return {'hello':'world'}
 
 class TodoSimple(Resource):
+
+    @cors.crossdomain(origin='https://shotahorii.github.io')
     def get(self, todo_id):
         return {todo_id: todos[todo_id]}
 
+    @cors.crossdomain(origin='*')
     def put(self, todo_id):
         todos[todo_id] = request.form['data']
         return {todo_id: todos[todo_id]}
