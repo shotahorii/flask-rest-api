@@ -18,4 +18,7 @@ RESTful API Server using flask.
 3. Find the docker image id: `sudo docker images` then copy the image id of the image built above.
 4. Delete the image: `sudo docker rmi <image id>`
 5. `cd` to the repo folder 
-6. 
+6. `git pull <this repo url>`
+7. Files in `storage/` folder (listed in .gitignore) need to be uploaded manually with `scp -i /path/to/pem/file/XXX.pem /path/to/file/to/upload/YYY.py ec2-user@ec2-XX-XX-XX.compute-1.amazonaws.com:/home/ec2-user/ZZZ`
+8. Re build the image: `sudo docker build -t <image name> .`
+9. Start the server: `sudo docker run -d --rm -p 80:80 <image name>`
