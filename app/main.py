@@ -1,10 +1,16 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_restful import Resource, Api
 from flask_restful.utils import cors
 import json
 
 app = Flask(__name__)
 api = Api(app)
+
+@app.route('/')
+def index():
+    """ Displays the index page accessible at '/'
+    """
+    return render_template('index.html')
 
 
 todos = {"todo1": "Remember the milk"}
@@ -34,7 +40,7 @@ class DublinRestaurants(Resource):
             data = json.load(f)
             return data
 
-api.add_resource(HelloWorld, '/')
+# api.add_resource(HelloWorld, '/')
 api.add_resource(TodoSimple, '/api/<string:todo_id>')
 api.add_resource(DublinRestaurants, '/api/dublinrestaurants')
 
