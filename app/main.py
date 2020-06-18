@@ -6,20 +6,13 @@ import json
 app = Flask(__name__)
 api = Api(app)
 
-@app.route('/')
-def index():
-    """ Displays the index page accessible at '/'
-    """
-    return render_template('index.html')
-
-
 todos = {"todo1": "Remember the milk"}
 
 class HelloWorld(Resource):
 
     @cors.crossdomain(origin='*')
     def get(self):
-        return {'hello':'world'}
+        return render_template('index.html')
 
 class TodoSimple(Resource):
 
@@ -40,7 +33,7 @@ class DublinRestaurants(Resource):
             data = json.load(f)
             return data
 
-# api.add_resource(HelloWorld, '/')
+api.add_resource(HelloWorld, '/')
 api.add_resource(TodoSimple, '/api/<string:todo_id>')
 api.add_resource(DublinRestaurants, '/api/dublinrestaurants')
 
